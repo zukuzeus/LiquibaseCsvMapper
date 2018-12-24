@@ -43,7 +43,7 @@ public class CsvToLiquibaseConverterApplication implements ApplicationRunner {
 			xml = csvToXmlLiquibaseInsertConverter.convertCsvFileToXml(csvFilePath, courierSymbol, TABLE_NAME);
 			log.info(xml);
 		} else {
-			log.warn("lack of --{}=courierPath or --{}=courierSymbol arguments", INPUT_CSV_FILE_ARGUMENT_NAME, INPUT_COURIER_SYMBOL_ARGUMENT_NAME);
+			log.warn("lack of mandatory arguments --{}=courierPath or --{}=courierSymbol arguments, application will exit", INPUT_CSV_FILE_ARGUMENT_NAME, INPUT_COURIER_SYMBOL_ARGUMENT_NAME);
 		}
 		if (validateCommandLineArgumentExists(args, OUTPUT_TXT_FILE_ARGUMENT_NAME)) {
 			stringToTxtFileWriter.writeStringToFile(xml, getOptionValue(args, OUTPUT_TXT_FILE_ARGUMENT_NAME));
