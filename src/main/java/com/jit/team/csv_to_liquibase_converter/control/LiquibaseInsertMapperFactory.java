@@ -9,11 +9,14 @@ import lombok.AllArgsConstructor;
 public class LiquibaseInsertMapperFactory {
 
 	private RupostInsertChangeSetMapper rupostInsertChangeSetMapper;
+	private CDEKInsertChangeSetMapper cdekInsertChangeSetMapper;
 
 	public LiquibaseInsertMapper getCourierMapper(String courierSymbol) {
 		switch (courierSymbol) {
 			case "POST_RU":
 				return rupostInsertChangeSetMapper;
+			case "CDEK":
+				return cdekInsertChangeSetMapper;
 			case "DPD_UK":
 				throw new IllegalArgumentException("DPD UK not implemented yet - implement LiquibaseInsertMapper and create bean with its type");
 			default:

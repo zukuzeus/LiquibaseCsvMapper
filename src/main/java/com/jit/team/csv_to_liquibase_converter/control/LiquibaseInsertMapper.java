@@ -8,6 +8,10 @@ import com.jit.team.csv_to_liquibase_converter.entity.LiquibaseInsert;
 
 public interface LiquibaseInsertMapper {
 
+	String COURIER_SYMBOL_COLUMN_NAME = "courierSymbol";
+	String MAPPED_STATUS_COLUMN_NAME = "mappedStatus";
+	String STATUS_COLUMN_NAME = "status";
+
 	default LiquibaseInsert mapCsvLineOntoLiquibaseInsert(final String[] csvLine, final String courierSymbol, final String tableName) {
 		List<Column> columns = new ArrayList<>();
 
@@ -18,7 +22,9 @@ public interface LiquibaseInsertMapper {
 		return new LiquibaseInsert(tableName, columns);
 	}
 
-	Column mapCourierColumn(String courierSymbol);
+	default Column mapCourierColumn(String courierSymbol) {
+		return new Column(COURIER_SYMBOL_COLUMN_NAME, courierSymbol);
+	}
 
 	Column mapMappedStatus(String[] csvLine);
 
